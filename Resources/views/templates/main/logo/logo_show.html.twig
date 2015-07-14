@@ -1,0 +1,19 @@
+<div id="logo">
+    <a href="{{ path('edemy_main_frontpage') }}">
+      {#
+      {% if logo is null %}
+          {% image '@eDemyMainBundle/Resources/public/images/logo.png' %}
+              <img src="{{ asset_url }}" alt="Logo" />
+          {% endimage %}
+      {% else %}
+          <img src="/images/{{ logo|raw }}" alt="Logo" />
+      {% endif %}
+      #}
+
+      {% if logo is null %}
+          <img src="" alt="Logo" />
+      {% else %}
+          <img src="/images_{{ app.request.host }}/{{ logo|raw }}" alt="Logo" />
+      {% endif %}
+    </a>
+</div>

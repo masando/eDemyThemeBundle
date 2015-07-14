@@ -1,0 +1,82 @@
+{{ adsense(2975710819) }}
+
+<div itemscope itemtype="http://data-vocabulary.org/Product" id="product" class="module">
+    <div class="product_imagen">
+        {% if entity.imagenes|length > 3 %}
+            <div class="flexslider">
+                <ul class="slides">
+                    {% for imagen in entity.imagenes %}
+                        <li data-thumb="{{ imagen.webpath(100, null, app.request.host) }}">
+                            <img itemprop="image" src="{{ imagen.webpath(300, null, app.request.host) }}" />
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <script type="text/javascript">
+                $(window).load(function() {
+                    $('.flexslider').flexslider({
+                        animation: "slide",
+                        controlNav: "thumbnails"
+                    });
+                });
+            </script>
+        {% elseif entity.imagenes|length > 1 %}
+            <div class="flexslider">
+                <ul class="slides">
+                    {% for imagen in entity.imagenes %}
+                        <li>
+                            <img itemprop="image" src="{{ imagen.webpath(300, null, app.request.host) }}" />
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <script type="text/javascript">
+                $(window).load(function() {
+                    $('.flexslider').flexslider({
+                        animation: "slide",
+                    });
+                });
+            </script>
+        {% else %}
+            {% for imagen in entity.imagenes %}
+                <img itemprop="image" src="{{ imagen.webpath(300, null, app.request.host) }}" />
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="product_details">
+        <div class="product_name">
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('edemy_product_product_edit', {'id': entity.id}) }}">Editar</a>
+            {% endif %}
+            <meta property="og:title" content="{{ entity.name }}" />
+            <h3 itemprop="name" >{{ entity.name }}</h3>
+        </div>
+        <meta property="og:site_name" content="{{ entity.namespace }}" />
+        <meta itemprop="priceCurrency" content="EUR" />
+
+        {% if entity.price > 0 %}
+            <div class="product_price">
+                <p>Precio: <span itemprop="price">{{ entity.price|number_format(2, '.') }}</span>&nbsp;&euro;&nbsp;({{ entity.priceUnit }})</p>
+            </div>
+        {% endif %}
+
+        <meta itemprop="availability" content="in_stock" />
+
+        <div class="product_category">
+            {% if entity.namespace %}
+                <p>Categoría: <a href="{{ path(entity.namespace ~ '.edemy_product_category_details', { 'slug' : entity.category.slug }) }}"><span itemprop="category">{{ entity.category }}</span></a></p>
+            {% else %}
+                <p>Categoría: <a href="{{ path('edemy_product_category_details', { 'slug' : entity.category.slug }) }}"><span itemprop="category">{{ entity.category }}</span></a></p>
+            {% endif %}
+        </div>
+
+        <div class="product_description clear">
+            <p itemprop="description">{{ entity.description|raw }}</p>
+        </div>
+
+        {{  cartButton(entity) }}
+    </div>
+    {{ relatedDocument(entity) }}
+</div>
+{{ relatedInstagram(entity) }}
+{{ adsense(2975710819) }}

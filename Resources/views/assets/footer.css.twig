@@ -1,0 +1,94 @@
+#footer {
+    {% if params['#footer background_color'] is defined -%}
+        background-color: {{ params['#footer background-color'] }};
+    {% else %}
+        background-color: rgba(100,100,100,0.7);
+    {% endif %}
+    min-height: 100px;
+    {#border-top: 1px solid rgb(178,178,178);#}
+    position: relative;
+    bottom: 0;
+    {#opacity: 0.7;#}
+    width: 100%;
+    overflow: hidden;
+}
+
+#footer .footermodule {
+    padding: 1em;
+    color: white;
+}
+
+#footer .footermodule h3 {
+    font-size: large;
+    color: white;
+}
+
+#footer .footermodule a {
+    text-decoration: none;
+    font-size: normal;
+    color: white;
+}
+
+{#
+    #footer {
+        margin-top: 25px;
+        {% if params['logo_background_color'] is defined -%}
+            background-color: {{ params['logo_background_color'] }};
+        {% endif %}
+        padding: 10px 0;
+        clear: both;
+    }
+    #footermenu{
+        float: right;
+    }
+
+    #footermenu {
+        margin-top: 150px;
+        
+        font-family: 'Roboto Condensed', sans-serif;
+        font-weight: 400;
+    }
+    @media screen and (min-width: 0px) and (max-width: 699px) {
+        #footermenu {
+            max-width: 70%;
+        }
+    }
+    #footermenu ul {
+        text-align:center;
+        width:100%;
+        padding:0;
+        margin:0;
+        list-style-type:none;
+    }
+    #footermenu a {
+        text-decoration:none;
+        padding:0.2em 0.6em;
+        {% if params['#footermenu color'] is defined -%}
+            color: {{ params['#footermenu color'] }};
+        {% endif %}
+    }
+    #footermenu a:hover {
+        text-decoration:none;
+        color:black;
+    }
+    #footermenu li {
+        display:inline;
+    }
+    #footermenu li a {
+        white-space: nowrap;
+    }
+
+    #footer .social {
+        padding: 0 1em 0 1em;
+        max-height: 20px;
+        width: 60px;
+        float: left;
+    }
+    #footer .social .icon {
+        margin-right: 5px;
+        float: left;
+    }
+    #footer .social img {
+        max-width: 20px;
+    }
+#}

@@ -1,0 +1,62 @@
+#busqueda {
+    overflow: hidden;
+    padding: 10px;
+    background-color: rgba(240, 255, 240, 0.5);
+    width: 100%;
+}
+
+@media screen and (max-width: 699px) {
+    #busqueda {
+        {#margin: 0 auto 20px auto;#}
+    }
+}
+
+@media screen and (min-width: 700px) {
+    #busqueda form {
+        margin: 0 auto;
+        width: 40%;
+    }
+}
+
+#busqueda #busqueda_box {
+    float: left;
+    width: 80%;
+}
+
+#busqueda #busqueda_box input {
+    width: 96%;
+    border: 1px solid green;
+    border-radius: 5px;
+}
+
+
+#resultados_busqueda {
+    width: 80%;
+    text-align: center;
+    margin: 20px auto;
+    min-width: 300px;
+    min-height: 100px;
+    padding: 1em;
+    overflow: auto;
+}
+
+#resultados_busqueda h2 {
+    font-size: 30px;
+}
+
+.navigation {
+    margin-top: 10px;
+    clear: both;
+    text-align: center;
+    margin: 20px auto 10px auto;
+    font-size: 30px;
+}
+
+.navigation .pagination > span {
+    padding: 5px;
+    min-height: 20px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 5px;
+}

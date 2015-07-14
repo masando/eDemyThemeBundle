@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+        .Table {
+            display: table;
+            border-collapse: collapse;
+        }
+        .Title {
+            display: table-caption;
+            text-align: center;
+            font-weight: bold;
+            font-size: larger;
+        }
+        .Heading {
+            display: table-row;
+            font-weight: bold;
+            text-align: center;
+        }
+        .Row {
+            display: table-row;
+        }
+        .Cell {
+            display: table-cell;
+            border: solid;
+            border-width: thin;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        .green {
+            background-color: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="Table">
+    {% for page in pages %}
+        {% if page.likes == ref %}
+        <div class="Row green">
+        {% else %}
+        <div class="Row">
+        {% endif %}
+            <div class="Cell">
+                {{ page.name|slice(0,2) }}
+            </div>
+            <div class="Cell">
+                {{ page.likes }}
+            </div>
+            <div class="Cell">
+                {{ page.likes - ref }}
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</body>

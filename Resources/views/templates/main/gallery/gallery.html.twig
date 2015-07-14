@@ -1,0 +1,13 @@
+<div id="gallery">
+    {% for entity in entities %}
+        <div class="gallery_imagen">
+            <div class="gallery_link">
+                <a href="{{ path('edemy_gallery_imagen_details', { 'slug' : entity.slug }) }}">
+                    <img src="{{ entity.webpath(250) }}" />
+                </a>
+            </div>
+            <p>{{ entity.name }}</p>
+        </div>
+    {% endfor %}
+</div>
+ 

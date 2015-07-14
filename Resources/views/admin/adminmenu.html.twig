@@ -1,0 +1,7 @@
+{% if items|length %}
+    <div id="{{ menu }}menu">
+        {% set main_menu = knp_menu_get('eDemyMenuBundle:Builder:menu', [], { 'items' : items }) %}
+        {{ knp_menu_render(main_menu, {'template': 'eDemyMenuBundle::knp_menu.html.twig'}) }}
+    </div>
+{% endif %}
+ 

@@ -1,0 +1,9 @@
+<div id="contactform" class="module">
+    <h2>Formulario de Contacto</h2>
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        {{ flashMessage }}
+    {% endfor %}
+
+    {{ form(form) }}
+</div>

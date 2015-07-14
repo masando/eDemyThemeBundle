@@ -1,0 +1,13 @@
+<div id="busqueda">
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    <div id="busqueda_box">
+        {{ form_widget(form.search) }}
+    </div>
+
+    <div id="busqueda_button">
+        {{ form_widget(form.submit) }}
+    </div>
+{{ form_end(form) }}
+</div>

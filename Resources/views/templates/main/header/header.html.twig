@@ -1,0 +1,8 @@
+<div id="header">
+    {% for module, modulevalue in modules %}
+        {{ modulevalue|raw }}
+    {% endfor %}
+    <div id="likes">
+        Grupo Namasté tiene {{ likes('tecafeycomplementos') + likes('namasteespacio') + likes('namasteesoterismo') }} Me Gusta
+    </div>
+</div>

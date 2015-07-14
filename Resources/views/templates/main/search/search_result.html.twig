@@ -1,0 +1,14 @@
+{% if pagination|length %}
+    <div id="resultados_busqueda" class="module">
+        <h2>Resultados de B&uacute;squeda</h2>
+        {% for result in pagination %}
+            {{ result|raw }}
+        {% endfor %}
+    </div>
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+{% else %}
+    <p class="center">No se ha encontrado ningún resultado.</p>
+{% endif %}
+

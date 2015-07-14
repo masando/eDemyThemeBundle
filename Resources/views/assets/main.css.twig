@@ -1,0 +1,69 @@
+html{
+    height: 100%;
+}
+body {
+    {#min-height: 100%;#}
+    width: 100%;
+    overflow: auto;
+}
+
+@media screen and (max-width: 699px) {
+    #wrapper {
+        {#width: 98%;#}
+        overflow: hidden;
+        {#margin: 5px;#}
+    }
+}
+
+@media screen and (min-width: 700px) {
+    #wrapper {
+        {% if params['#wrapper width'] is defined %}
+            width: {{ params['#wrapper width'] }};
+            margin: 0 auto;
+        {% else %}
+            width: 100%;
+        {% endif %}
+        overflow: hidden;
+    }
+}
+
+form label {
+    display: block;
+}
+form input[type="radio"], form input[type="checkbox"] {
+    width:15px !important;
+    display:inline-block;
+}
+
+* {
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+}
+
+body {
+    {% if params['body color'] is defined %}
+        color: {{ params['body color'] }};
+    {% endif %}
+}
+
+.alert {
+    color: red;
+}
+
+strong {
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#copyright {
+    clear: both;
+    margin: 0;
+    padding: 10px;
+    background-color: rgba(255,255,255,0.7);
+    text-align: center;
+}

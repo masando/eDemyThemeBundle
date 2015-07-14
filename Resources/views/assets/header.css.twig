@@ -1,0 +1,27 @@
+#header {
+    clear:both;
+    {# width:100%; #}
+    border: 0px solid black;
+    {#height:auto;#}
+    {#overflow: hidden;#}
+    {% if params['#header background-color'] is defined -%}
+        background-color: {{ params['#header background-color'] }};
+    {%- endif %}
+    {# background-color: rgba(176, 153, 109, 0.5) #}
+    {# padding: 0 4px; #}
+    {#position: relative;#}
+    {#top: 0;#}
+    {#opacity: 0.7;#}
+    background-color: rgba(255,255,255,0.7);
+    {#background-color: white;#}
+    {#overflow: hidden;#}
+}
+
+@media screen and (max-width: 699px) {
+}
+
+@media screen and (min-width: 700px) {
+    #header {
+        min-height: 150px;
+    }
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:hx="http://purl.org/NET/hinclude">
+<head>
+    <meta charset="UTF-8" />
+    {{ 'main' | asset_url }}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="30;URL={{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}" />
+</head>
+    <body>
+        <div id="product_tv">
+            <div class="product_imagen">
+                 <img itemprop="image" src="{{ entity.imagenes.first.webpath(800) }}" />
+            </div>
+            <div class="product_name">
+                <h3 itemprop="name" >{{ entity.name }}</h3>
+            </div>
+        </div>
+    </body>
+</html>

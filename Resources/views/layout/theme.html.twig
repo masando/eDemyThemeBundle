@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:hx="http://purl.org/NET/hinclude">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% if description is defined -%}
+            <meta name="description" content="{{ description|raw }}" />
+        {% endif -%}
+        {% if keywords is defined -%}
+            <meta name="keywords" content="{{ keywords|raw }}" />
+        {% endif -%}
+        {% if title is defined -%}
+            <title>{{ title|raw }}</title>
+        {% endif -%}
+        {{ 'main' | asset_url }}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300' rel='stylesheet' type='text/css' />
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100' rel='stylesheet' type='text/css'>
+        {% if meta is defined %}
+            {{ meta|raw }}
+        {% endif %}
+        {{ metas() }}
+
+
+        {# <script src="/Flux-Slider/js/zepto/zepto.js" type="text/javascript" charset="utf-8"></script> #}
+        {# <script src="/Flux-Slider/js/flux.min.js"></script> #}
+        {# <script src="/Flux-Slider/js/flux.jquery.min.js"></script> #}
+        {#
+        <link rel="stylesheet" href="/SlickNav/slicknav.css" />
+        <link rel="stylesheet" media="screen" href="/superfish/dist/css/superfish.css">
+        <script src="/superfish/dist/js/superfish.js"></script>
+        <script src="/jquery-backstretch/jquery.backstretch.min.js"></script>
+        <link rel="stylesheet" href="/FlexSlider/flexslider.css" type="text/css">
+        <script src="/FlexSlider/jquery.flexslider.js"></script>
+        <script src="http://vast-engineering.github.io/jquery-popup-overlay/jquery.popupoverlay.js"></script>
+        #}
+
+        {{ cdnjs('jquery', '2.1.4') }}
+        {{ cdnjs('jqueryui', '1.11.4') }}
+        {{ cdnjs('hinclude', '0.9.5') }}
+        {{ cdnjs('jquery.slicknav', '1.0.4') }}
+        {{ cdnjs('superfish', '1.7.4') }}
+        {{ cdnjs('backstretch', '2.0.4') }}
+        {{ cdnjs('flexslider', '2.5.0') }}
+
+        {{ 'main' | script_url }}
+    </head>
+    <body class="site">
+        <div id="wrapper" class="site-content">
+            {{ render(controller('edemy.header:header', { _route: app.request.attributes.get('_route')} )) }}
+            {% if content is defined %}
+              <div id="content">
+                  {{ content|raw }}
+              </div>
+            {% endif %}
+        </div>
+        {{  render(controller('edemy.footer:footer', { _route: app.request.attributes.get('_route')} )) }}
+        {#
+        {% if namespace is defined %}
+          {{ render_hinclude(controller('edemy.menu:adminMenu', { 'namespace' : namespace })) }}
+        {% else %}
+          {{ render_hinclude(controller('edemy.menu:adminMenu')) }}
+        {% endif %}
+        #}
+        {# tinymce_init() #}
+        <div id="copyright">(C) Copyright <a href="{{ app.request.host }}">{{ app.request.host }}</a> {{ "now"|date("Y") }} - Todos los derechos reservados</div>
+        <script src="/cookiechoices.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function(event) {
+                cookieChoices.showCookieConsentBar('Este sitio utiliza cookies', 'entendido', '', 'http://maste.es');
+            });
+        </script>
+    </body>
+</html>

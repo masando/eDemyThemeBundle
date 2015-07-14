@@ -1,0 +1,20 @@
+{% if docs|length %}
+<div id="related_documents">
+    <h2>Artículos relacionados en nuestro blog:</h2>
+    {% for entity in docs %}
+        <div class="related_document">
+            <a href="{{ path('edemy_main_document_details', {'slug': entity.slug}) }}">
+                <h2>{{ entity.title }} [leer más]</h2>
+            </a>
+            <div class="description">
+                {{ entity.content|truncatehtml(200)|raw }}
+            </div>
+            <div class="document_imagen">
+                {% if entity.imagenes|length %}
+                    <img src="{{ entity.imagenes.first.webpath(150, null, app.request.host) }}" />
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}

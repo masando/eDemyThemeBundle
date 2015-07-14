@@ -1,0 +1,70 @@
+{{ adsense(2975710819) }}
+
+<div id="document" class="module">
+    {% if login.type == 'user' %}
+        <p>Hola {{ login.name }}: Has accedido a este contenido con tu cuenta de Facebook. Para cerrar la sesión pulsa <a href="{{ path('edemy_facebook_logout') }}">aquí</a></p>
+    {% endif %}
+    <div id="document_title">
+        <h2>{{ entity.title }}</h2>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('edemy_main_document_edit', {'id': entity.id}) }}">Editar</a>
+        {% endif %}
+    </div>
+    <div class="document_imagen">
+        {% if entity.imagenes|length > 3 %}
+            <div class="flexslider">
+                <ul class="slides">
+                    {% for imagen in entity.imagenes %}
+                        <li data-thumb="{{ imagen.webpath(100, null, app.request.host) }}">
+                            <img itemprop="image" src="{{ imagen.webpath(300, null, app.request.host) }}" />
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <script type="text/javascript">
+                $(window).load(function() {
+                    $('.flexslider').flexslider({
+                        animation: "slide",
+                        controlNav: "thumbnails"
+                    });
+                });
+            </script>
+            {% elseif entity.imagenes|length > 1 %}
+            <div class="flexslider">
+                <ul class="slides">
+                    {% for imagen in entity.imagenes %}
+                        <li>
+                            <img itemprop="image" src="{{ imagen.webpath(300, null, app.request.host) }}" />
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <script type="text/javascript">
+                $(window).load(function() {
+                    $('.flexslider').flexslider({
+                        animation: "slide",
+                    });
+                });
+            </script>
+        {% else %}
+            {% for imagen in entity.imagenes %}
+        <img itemprop="image" src="{{ imagen.webpath(300, null, app.request.host) }}" />
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div id="document_details">
+        {{ entity.content|raw }}
+        {#{% if login.type == 'user' %}#}
+            {#{{ entity.content|raw }}#}
+        {#{% else %}#}
+            {#{{ entity.content|truncatehtml(500)|raw }}#}
+            {#{% if login.loginUrl is defined %}#}
+                {#<a href="{{ login.loginUrl }}">#}
+                    {#<h2>Leer el artículo completo (acceso a través de facebook).</h2>#}
+                {#</a>#}
+            {#{% endif %}#}
+        {#{% endif %}#}
+    </div>
+</div>
+
+{{ adsense(2975710819) }}

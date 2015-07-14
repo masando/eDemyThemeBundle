@@ -1,0 +1,16 @@
+<div class="product_add_to_cart">
+    <a href="{{ path('edemy_cart_cart_add', {'id': entity.id}) }}">
+        <div class="product_add_to_cart">
+            {{ "cart.add"|translate|upper }}
+        </div>
+    </a>
+</div>
+{% if cart_url is defined %}
+    <div class="product_add_to_cart">
+        <a href="{{ path(cart_url) }}">
+            <div class="product_add_to_cart">
+                {{ "Solicitar información"|translate|upper }}
+            </div>
+        </a>
+    </div>
+{% endif %}

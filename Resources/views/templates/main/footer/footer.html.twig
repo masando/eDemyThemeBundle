@@ -1,0 +1,13 @@
+<div id="footer" class="row">
+    {% for module, modulevalue in modules %}
+        {{ modulevalue|raw }}
+    {% endfor %}
+
+    {% if copyright %}
+        <div id="copyright">
+            <div id="copyrightcontent">
+            {{ copyright.content|raw }}
+            </div>
+        </div>
+    {% endif %}
+</div>

@@ -1,0 +1,8 @@
+<div id="login">
+    {% if _target_path is defined %}
+        {{ render_hinclude(controller('FOSUserBundle:Registration:registerTarget', { '_target_path': _target_path }), {'default': 'Loading...'}) }}        
+    {% else %}
+        {{ render_hinclude(controller('FOSUserBundle:Registration:register'), {'default': 'Loading...'}) }}
+    {% endif %}
+</div>
+ 

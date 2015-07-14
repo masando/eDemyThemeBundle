@@ -1,0 +1,54 @@
+#logo {
+    text-align: center;
+    {% if params['#logo margin-top'] is defined -%}
+        margin-top: {{ params['#logo margin-top'] }};
+    {%- endif %}
+    {% if params['#logo margin-bottom'] is defined -%}
+        margin-bottom: {{ params['#logo margin-bottom'] }};
+    {%- endif %}
+    {% if params['#logo background-color'] is defined -%}
+        background-color: {{ params['#logo background-color'] }};
+    {% endif %}
+    margin-left: auto;
+    margin-right: auto;
+    {% if params['#logo max-width'] is defined -%}
+        max-width: {{ params['#logo max-width'] }};
+    {% endif %}
+}
+
+#logo img {
+    {% if params['#logo width'] is defined -%}
+        width: {{ params['#logo width'] }};
+    {% endif %}
+    {% if params['#logo max-width'] is defined -%}
+        max-width: {{ params['#logo max-width'] }};
+    {% endif %}
+    {# height: 80px; #}
+    border: none;
+}
+
+@media screen and (max-width: 499px) {
+    #logo img {
+        {% if params['#logo width'] is defined -%}
+            width: {{ params['#logo width'] }};
+        {% else %}
+            width: 100%;
+        {% endif %}
+    }
+}
+
+
+#fixedlogo {
+    width:100%;
+    {% if params['#logo background-color'] is defined -%}
+        background-color: {{ params['#logo background-color'] }};
+    {% endif %}
+    margin-left: auto;
+    margin-right: auto;
+    height: 30px;
+}
+#fixedlogo img {
+    margin-top: 5px;
+    margin-left: 20px;
+}
+ 
