@@ -26,6 +26,6 @@ class eDemyThemeBundle extends Bundle
 
     public static function eDemyBundle() {
 
-        return true;
+        return false;
     }
 }
