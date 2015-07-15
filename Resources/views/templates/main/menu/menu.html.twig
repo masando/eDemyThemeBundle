@@ -3,7 +3,7 @@
 {% endif %}
 <div id="{{ menu }}menu">
     {% set main_menu = knp_menu_get('eDemyMainBundle:Builder:menu', [], { 'items' : items }) %}
-    {{ knp_menu_render(main_menu, {'template': 'AppBundle::snippets/knp_menu.html.twig'}) }}
+    {{ knp_menu_render(main_menu, {'template': 'eDemyThemeBundle::snippets/knp_menu.html.twig'}) }}
 </div>
  
 

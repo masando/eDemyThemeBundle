@@ -10,6 +10,6 @@
     </ul>
 
     {% for association in entity.associations %}
-        {{ include('AppBundle:assets:OneToMany.js.twig', { 'bundle' : bundle_name|lower, 'one' : entity_name, 'many' : association.targetEntity|split('\\')|last|lower, 'manys' : association.fieldName}) }}
+        {{ include('eDemyThemeBundle:assets:OneToMany.js.twig', { 'bundle' : bundle_name|lower, 'one' : entity_name, 'many' : association.targetEntity|split('\\')|last|lower, 'manys' : association.fieldName}) }}
     {% endfor %}
 </div>
