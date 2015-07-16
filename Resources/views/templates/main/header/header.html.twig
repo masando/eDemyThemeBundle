@@ -2,7 +2,9 @@
     {% for module, modulevalue in modules %}
         {{ modulevalue|raw }}
     {% endfor %}
-    <div id="likes">
-        Grupo Namasté tiene {{ likes('tecafeycomplementos') + likes('namasteespacio') + likes('namasteesoterismo') }} Me Gusta
-    </div>
+    {% if 'maste.es' in app.request.host %}
+        <div id="likes">
+            Grupo Namasté tiene {{ likes('tecafeycomplementos') + likes('namasteespacio') + likes('namasteesoterismo') }} Me Gusta
+        </div>
+    {% endif %}
 </div>
