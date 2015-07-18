@@ -1,0 +1,5 @@
+cookiechoices:
+    path: /cookiechoices.js
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    "eDemyThemeBundle::assets/cookiechoices.js.twig"

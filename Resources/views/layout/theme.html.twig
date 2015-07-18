@@ -65,7 +65,7 @@
         #}
         {# tinymce_init() #}
         <div id="copyright">(C) Copyright <a href="{{ app.request.host }}">{{ app.request.host }}</a> {{ "now"|date("Y") }} - Todos los derechos reservados</div>
-        <script src="/cookiechoices.js"></script>
+        <script src="{{ path('cookiechoices') }}"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function(event) {
                 cookieChoices.showCookieConsentBar('Este sitio utiliza cookies', 'entendido', '', 'http://maste.es');
