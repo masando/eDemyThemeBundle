@@ -3,8 +3,10 @@
         {{ modulevalue|raw }}
     {% endfor %}
     {% if 'maste.es' in app.request.host %}
-        <div id="likes">
-            Grupo Namasté tiene {{ likes('tecafeycomplementos') + likes('namasteespacio') + likes('namasteesoterismo') }} Me Gusta
-        </div>
+        {% if 'edemy_facebook_extension' is loaded %}
+            <div id="likes">
+                Grupo Namasté tiene {{ likes('tecafeycomplementos') + likes('namasteespacio') + likes('namasteesoterismo') }} Me Gusta
+            </div>
+        {% endif %}
     {% endif %}
 </div>
