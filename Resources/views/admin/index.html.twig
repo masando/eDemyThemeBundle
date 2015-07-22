@@ -29,11 +29,12 @@
         <div class="display_row_group">
             {% set row_class = "" %}
             {% set row_title = "" %}
+            {% set has_content = 0 %}
             {% for entity in entities %}
                 {#{% set row_class = "" %}#}
-                {#{% set row_title = "" %}#}
-                {#{% for field in entity.fields %}#}
-                    {#{% if field['fieldName'] == 'published' %}#}
+                {% set row_title = "" %}
+                {% for field in entity.fields %}
+                    {% if field['fieldName'] == 'published' %}
                         {#{% if field['value'] == 0 %}#}
                             {#{% set published = 0 %}#}
                             {#&#123;&#35;{% set row_class = row_class ~ " unpublished" %}&#35;&#125;#}
@@ -50,10 +51,15 @@
                                 {#{% endif %}#}
                             {#{% endfor %}#}
                         {#{% endif %}#}
-                    {#{% elseif field['fieldName'] == 'description' %}#}
-                        {#{% set row_title = field['value'] %}#}
-                    {#{% endif %}#}
-                {#{% endfor %}#}
+                    {% elseif field['fieldName'] == 'content' %}
+                        {% set row_title = field['value'] %}
+                        {% if field['value']|length %}
+                            {% set has_content = 1 %}
+                        {% else %}
+                            {% set has_content = 0 %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
                 <div class="display_row {{ row_class }}" title="{{ row_title }}">
                     {% for field in entity.fields %}
                         {% if attribute(entities|first, 'show' ~ field['fieldName'] ~ 'InPanel') is defined
@@ -92,8 +98,8 @@
                             {% elseif field['fieldName'] == 'tags' %}
                                 <div class="display_cell">
                                 {% for tag in entity.tags %}
-                                <div class="display_row {{ tag.name }}">
-                                    {{ tag.name }}
+                                <div class="display_row">
+                                    <div style="width:100%;border-radius:3px;padding:3px;margin-bottom:3px;{{ stringToColor(tag.name) }}">{{ tag.name }}</div>
                                 </div>
                                 {% endfor %}
                                 </div>
@@ -110,6 +116,12 @@
                             {% elseif field['type'] == 'time' %}
                                 <div class="display_cell">
                                 {{ field['value']|date('H:i') }}
+                                </div>
+                            {% elseif field['fieldName'] == 'name' %}
+                                <div class="display_cell">
+                                    {% if field['value'] is defined %}
+                                        {{ field['value'] }} {% if has_content %}...{% endif %}
+                                    {% endif %}
                                 </div>
                             {% else %}
                                 <div class="display_cell">
