@@ -27,51 +27,60 @@
             </div>
         </div>
         <div class="display_row_group">
+            {% set row_class = "" %}
+            {% set row_title = "" %}
             {% for entity in entities %}
-                {% set row_class = "" %}
-                {% set row_title = "" %}
-                {% for field in entity.fields %}
-                    {% if field['fieldName'] == 'published' %}
-                        {% if field['value'] == 0 %}
-                            {% set published = 0 %}
-                            {% set row_class = row_class ~ " unpublished" %}
-                        {% else %}
-                            {% set published = 1 %}
-                            {% set row_class = row_class ~ " published" %}
-                        {% endif %}
-                    {% elseif field['fieldName'] == 'tags' %}
-                        {% if published %}
-                            {% for tag in entity.tags %}
-                                {% if tag.name == 'fast' %}
-                                    {% set row_class = row_class ~ " fast" %}
-                                {% elseif tag.name == 'high' %}
-                                    {% set row_class = row_class ~ " high" %}
-                                {% endif %}
-                            {% endfor %}
-                        {% endif %}
-                    {% elseif field['fieldName'] == 'description' %}
-                        {% set row_title = field['value'] %}
-                    {% endif %}
-                {% endfor %}
+                {#{% set row_class = "" %}#}
+                {#{% set row_title = "" %}#}
+                {#{% for field in entity.fields %}#}
+                    {#{% if field['fieldName'] == 'published' %}#}
+                        {#{% if field['value'] == 0 %}#}
+                            {#{% set published = 0 %}#}
+                            {#&#123;&#35;{% set row_class = row_class ~ " unpublished" %}&#35;&#125;#}
+                        {#{% else %}#}
+                            {#{% set published = 1 %}#}
+                        {#{% endif %}#}
+                    {#{% elseif field['fieldName'] == 'tags' %}#}
+                        {#{% if published %}#}
+                            {#{% for tag in entity.tags %}#}
+                                {#{% if tag.name == 'fast' %}#}
+                                    {#{% set row_class = row_class ~ " fast" %}#}
+                                {#{% elseif tag.name == 'high' %}#}
+                                    {#{% set row_class = row_class ~ " high" %}#}
+                                {#{% endif %}#}
+                            {#{% endfor %}#}
+                        {#{% endif %}#}
+                    {#{% elseif field['fieldName'] == 'description' %}#}
+                        {#{% set row_title = field['value'] %}#}
+                    {#{% endif %}#}
+                {#{% endfor %}#}
                 <div class="display_row {{ row_class }}" title="{{ row_title }}">
                     {% for field in entity.fields %}
                         {% if attribute(entities|first, 'show' ~ field['fieldName'] ~ 'InPanel') is defined
                             and attribute(entities|first, 'show' ~ field['fieldName'] ~ 'InPanel') %}
-                            <div class="display_cell">
                             {% if field['fieldName'] == 'id' %}
+                                <div class="display_cell">
                                 {% set id = field['value'] %}
                                 <a href="{{ path(edit_route, { 'id' : field['value'] }) }}">{{ field['value'] }}</a>
+                                </div>
                             {% elseif field['fieldName'] == 'path' %}
+                                <div class="display_cell">
                                 <a href="{{ path(edit_route, { 'id' : entity.id }) }}">
                                     <img src="{{ entity.webpath(100) }}" width="100px"/>
                                 </a>
+                                </div>
                             {% elseif field['fieldName'] == 'published' %}
                                 {% if field['value'] == 0 %}
+                                    <div class="display_cell unpublished">
                                     <a href="{{ path(edit_route ~ 'publish', { 'id' : id }) }}">No</a>
+                                    </div>
                                 {% else %}
+                                    <div class="display_cell published">
                                     <a href="{{ path(edit_route ~ 'unpublish', { 'id' : id }) }}">Sí</a>
+                                    </div>
                                 {% endif %}
                             {% elseif field['type'] == 'array' %}
+                                <div class="display_cell">
                                 {% if attribute(entity, 'get' ~ field['fieldName'] ~ 'Multiple') %}
                                     {% for att in attribute(entity, 'get' ~ field['fieldName']) %}
                                         {{ att }} -
@@ -79,24 +88,36 @@
                                 {% else %}
                                     {{ attribute(entity, 'get' ~ field['fieldName'] ~ 'Choices', {"key" : field['value']}) }}
                                 {% endif %}
+                                </div>
                             {% elseif field['fieldName'] == 'tags' %}
+                                <div class="display_cell">
                                 {% for tag in entity.tags %}
-                                    {{ tag.name }},
+                                <div class="display_row {{ tag.name }}">
+                                    {{ tag.name }}
+                                </div>
                                 {% endfor %}
+                                </div>
                             {% elseif field['type'] == 'datetime' %}
+                                <div class="display_cell">
                                 {% if field['value'] is not null %}
                                     {{ field['value']|date('d-m-Y H:i') }}
                                 {% endif %}
+                                </div>
                             {% elseif field['type'] == 'date' %}
+                                <div class="display_cell">
                                 {{ field['value']|date('d-m-Y') }}
+                                </div>
                             {% elseif field['type'] == 'time' %}
+                                <div class="display_cell">
                                 {{ field['value']|date('H:i') }}
+                                </div>
                             {% else %}
+                                <div class="display_cell">
                                 {% if field['value'] is defined %}
                                     {{ field['value'] }}
                                 {% endif %}
+                                </div>
                             {% endif %}
-                            </div>
                         {% endif %}
                     {% endfor %}
 
