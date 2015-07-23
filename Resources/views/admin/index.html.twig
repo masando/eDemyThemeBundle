@@ -123,6 +123,12 @@
                                         {{ field['value'] }} {% if has_content %}...{% endif %}
                                     {% endif %}
                                 </div>
+                            {% elseif field['fieldName'] == 'content' %}
+                                <div class="display_cell">
+                                    {% if field['value'] is defined %}
+                                        {{ field['value'] | raw }}
+                                    {% endif %}
+                                </div>
                             {% else %}
                                 <div class="display_cell">
                                 {% if field['value'] is defined %}
