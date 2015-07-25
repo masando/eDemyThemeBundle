@@ -7,9 +7,11 @@
     <div class="navigation">
         {{ knp_pagination_render(pagination) }}
     </div>
+    {{ form_start(form) }}
     <div class="display_table">
         <div class="display_header_group">
             <div class="display_row">
+                <div class="display_cell">#</div>
                 {% if entities|length  %}
                     {% for field in entities|first.fields %}
                         {% if attribute(entities|first, 'show' ~ field['fieldName'] ~ 'InPanel') is defined 
@@ -61,6 +63,9 @@
                     {% endif %}
                 {% endfor %}
                 <div class="display_row {{ row_class }}" title="{{ row_title }}">
+                    <div class="display_cell">
+                    {{ form_widget(form.selectors[entity.fields.id.value]) }}
+                    </div>
                     {% for field in entity.fields %}
                         {% if attribute(entities|first, 'show' ~ field['fieldName'] ~ 'InPanel') is defined
                             and attribute(entities|first, 'show' ~ field['fieldName'] ~ 'InPanel') %}
@@ -160,7 +165,9 @@
                 </div> {# end div class display_row #}
             {% endfor %}
         </div> {# end div class display_row_group #}
+
     </div> {# end div class display_table #}
+    {{ form_end(form) }}
     <div class="navigation">
         {{ knp_pagination_render(pagination) }}
     </div>
