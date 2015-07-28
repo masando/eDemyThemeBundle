@@ -125,7 +125,7 @@
                             {% elseif field['fieldName'] == 'name' %}
                                 <div class="display_cell">
                                     {% if field['value'] is defined %}
-                                        {{ field['value'] }} {% if has_content %}...{% endif %}
+                                        <a href="{{ path(edit_route, { 'id' : entity.fields.id.value }) }}">{{ field['value'] }} {% if has_content %}...{% endif %}</a>
                                     {% endif %}
                                 </div>
                             {% elseif field['fieldName'] == 'content' %}
