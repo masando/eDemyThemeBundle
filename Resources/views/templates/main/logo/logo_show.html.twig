@@ -13,7 +13,10 @@
       {% if logo is null %}
           <img src="" alt="Logo" />
       {% else %}
+          {#
           <img src="/images_{{ app.request.host }}/{{ logo|raw }}" alt="Logo" />
+          #}
+          <img src="/images/{{ logo|raw }}" alt="Logo" />
       {% endif %}
     </a>
 </div>
