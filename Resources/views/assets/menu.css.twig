@@ -15,14 +15,19 @@
 #adminmenu a {
     text-decoration:none;
     padding:0.2em 0.6em;
-    color:black;
 }
+
 #adminmenu a:hover {
     text-decoration:none;
     color:black;
 }
 #adminmenu li {
     display:inline;
+    {% if params['#adminmenu color'] is defined -%}
+        color: {{ params['#adminmenu color'] }};
+    {% else %}
+        color: black;
+    {% endif -%}
 }
 
 {# MAINMENU #}
@@ -94,6 +99,11 @@
     margin: 2px;
     text-transform: uppercase;
     font-size: 15px;
+    {% if params['#mainmenu color'] is defined -%}
+        color: {{ params['#mainmenu color'] }};
+    {% else %}
+        color: black;
+    {% endif -%}
 }
 #mainmenu ul li a {
     display: block;
@@ -104,8 +114,6 @@
     {% else %}
         color: black;
     {% endif -%}
-
-    
 }
 #mainmenu ul li span {
     display: block;
