@@ -55,30 +55,10 @@
             <div id="cart_total" class="float_right align_right">
                 <h2>{{ 'cart.subtotal'|translate|upper }}: &nbsp;{{ cart.total()|number_format(2) }}&euro;</h2>
                 <p>{{ 'cart.shipping'|translate|upper }}: &nbsp;4.95&euro;</p>
+                <p>{{ 'cart.total'|translate|upper }}: &nbsp;{{ (cart.total() + 4.95) |number_format(2) }}&euro;</p>
             </div>
             <div class="clear"></div>
-            <div class="checkoutCta">
-                <!--
-                    <a class="oklBtn" href="#">Realizar Pedido</a>
-                -->
-                <div class="paypalSection">
-                    <!--
-                    <p> - <span>O</span> - </p>
-                    -->
-                    <div>
-                        <a title="Pagar con tarjeta" href="{{ path('edemy_cart_cart_paypal', {'landing' : 'card'}) }}" class="oklBtn" id=""><span>Pago con tarjeta</span></a><br/><br/><br/>
-                        <div style="margin-top: 20px;">
-                            <a href="{{ path('edemy_cart_paypal_landing') }}">
-                                <img src="https://www.paypal.com/es_XC/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;"><br/>
-                                {#
-                                <img src="/images/tarjetas.jpg" align="left" style="margin-right:7px; margin-top:20px;">
-                                #}
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            {{  buyButton() }}
         {% endif %}
     {% endif %}
     <div class="clear"></div>    
