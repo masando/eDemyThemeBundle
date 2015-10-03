@@ -25,6 +25,10 @@
     font-size: 20px;
 }
 
+#product_catalogo h2 {
+    font-size: 20px;
+}
+
 #catalogo_categories .category {
     border: 1px solid #CCC;
     display: inline-block;
@@ -48,12 +52,12 @@
 #catalogo_categories .category_without_image {
     border: 1px solid #CCC;
     display: inline-block;
-    width: 250px;
-    
-    padding: 0.5em;
-    margin: 1em;
-    float: left;
-
+    width: 120px;
+    height: 60px;
+    padding: 3px;
+    margin: 3px;
+    {# float: left;  #}
+    overflow: hidden;
     border-radius: 5px;
     box-shadow: 5px 5px 5px #999;
     -webkit-box-shadow: 5px 5px 5px #999;
@@ -69,6 +73,33 @@
 #catalogo_categories .category p {
     font-size: 15px;
 }
+
+{# SMALL CATEGORIES #}
+
+#catalogo_categories .category_small {
+    border: 1px solid #CCC;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    padding: 1em;
+    margin: 1em;
+    {# float: left; #}
+
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px #999;
+    -webkit-box-shadow: 5px 5px 5px #999;
+    -moz-box-shadow: 5px 5px 5px #999;
+    filter: shadow(color=#999999, direction=135, strength=2);
+
+    background-color: rgba(255,255,255,1);
+
+    overflow: hidden;
+}
+
+#catalogo_categories .category p {
+    font-size: 10px;
+}
+
 
 {# PRODUCT CATALOGO #}
 
@@ -105,7 +136,8 @@
     display: inline-block;
     height: 280px;
     padding: 1em;
-    float: left;
+    {# float: left; #}
+    overflow: hidden;
 
     border-radius: 5px;
     box-shadow: 5px 5px 5px #999;

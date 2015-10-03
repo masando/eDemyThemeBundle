@@ -1,0 +1,32 @@
+<div id="catalogo_categories" class="module">
+    <h2>Categor&iacute;as de Productos</h2>
+    <div style="text-align: center">
+    {% for entity in entities %}
+        {% if entity.imagenes|first.webpath is defined %}
+            <div class="category_small">
+                <div class="category_image">
+                    <a href="{{ path('edemy_product_category_details', { 'slug' : entity.slug }) }}">
+                        <img src="{{ entity.imagenes|first.webpath(null, 60, app.request.host) }}" />
+                    </a>
+                </div>
+                <p>{{ entity.name }}</p>
+            </div>
+        {% else %}
+            <div class="category_without_image">
+                <a href="{{ path('edemy_product_category_details', { 'slug' : entity.slug }) }}">{{ entity.name }}</a>
+            </div>
+            {#
+            {% if entity.products|first.imagenes|first.webpath is defined %}
+                <div class="category_image">
+                    <a href="{{ path('edemy_product_category_details', { 'slug' : entity.slug }) }}">
+                        <img src="{{ entity.products|first.imagenes|first.webpath(150, null, app.request.host) }}" />
+                    </a>
+                </div>
+                <h2><a href="{{ path('edemy_product_category_details', { 'slug' : entity.slug }) }}">{{ entity.name }}</h2>
+            {% else %}
+            {% endif %}
+            #}
+        {% endif %}
+    {% endfor %}
+    </div>
+</div>
