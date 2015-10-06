@@ -1,10 +1,19 @@
+{% set prefix = '' %}
+{% if namespace is defined %}
+    {% set prefix = namespace.value ~ '.' %}
+{% endif %}
+
 <div id="product_catalogo" class="module">
-    <h2>Productos Destacados</h2>
+    {% if namespace is defined %}
+        <a href="{{ path(prefix ~ 'edemy_main_frontpage') }}"><h2>Productos Destacados en {{ namespace.name }}</h2></a>
+    {% else %}
+        <h2>Productos Destacados</h2>
+    {% endif %}
     <div id="products">
         {% for entity in entities %}
             <div class="product">
                 <div class="product_imagen">
-                    <a href="{{ path('edemy_product_product_details', { 'slug' : entity.slug }) }}">
+                    <a href="{{ path(prefix ~ 'edemy_product_product_details', { 'slug' : entity.slug }) }}">
                         {% if entity.imagenes|first.webpath is defined %}
                         <img src="{{ entity.imagenes|first.webpath(250, null, app.request.host) }}" />
                         {% endif %}
@@ -16,7 +25,7 @@
                     <meta itemprop="priceCurrency" content="EUR" />
                     {{  entity.price|number_format(2, '.') }}&nbsp;&euro;<br/>
                 {% endif %}
-                <a href="{{ path('edemy_product_product_details', { 'slug': entity.slug }) }}">Más Información</a></p>
+                <a href="{{ path(prefix ~ 'edemy_product_product_details', { 'slug': entity.slug }) }}">Más Información</a></p>
             </div>
         {% endfor %}
     </div>

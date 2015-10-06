@@ -3,7 +3,7 @@
     <h2>Artículos relacionados en nuestro blog:</h2>
     {% for entity in docs %}
         <div class="related_document">
-            <a href="{{ path('edemy_main_document_details', {'slug': entity.slug}) }}">
+            <a href="{{ path(entity.namespace ~ '.' ~ 'edemy_main_document_details', {'slug': entity.slug}) }}">
                 <h2>{{ entity.title }} [leer más]</h2>
             </a>
             <div class="description">

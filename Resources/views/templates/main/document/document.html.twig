@@ -1,18 +1,22 @@
+{% set prefix = '' %}
+{% if namespace is defined %}
+    {% set prefix = namespace.value ~ '.' %}
+{% endif %}
 <div id="blog">
     {% for entity in pagination %}
         <div class="document module">
             <div class="title">
-                <a href="{{ path('edemy_main_document_details', {'slug': entity.slug}) }}">
+                <a href="{{ path(prefix ~ 'edemy_main_document_details', {'slug': entity.slug}) }}">
                     <h1>
                         {{ entity.title }}
                     </h1>
                 </a>
                 {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('edemy_main_document_edit', {'id': entity.id}) }}">Editar</a>
+                    <a href="{{ path(prefix ~ 'edemy_main_document_edit', {'id': entity.id}) }}">Editar</a>
                 {% endif %}
             </div>
             {% if entity.imagenes|length %}
-                <a href="{{ path('edemy_main_document_details', {'slug': entity.slug}) }}">
+                <a href="{{ path(prefix ~ 'edemy_main_document_details', {'slug': entity.slug}) }}">
                 <div class="document_imagen">
                     <img itemprop="image" src="{{ entity.imagenes.first.webpath(300, null, app.request.host) }}" />
                 </div>
@@ -21,7 +25,7 @@
             <div class="description">
                 {{ entity.content|truncatehtml(500)|raw }}
                 <br />
-                <a href="{{ path('edemy_main_document_details', {'slug': entity.slug}) }}">[leer más]</a>
+                <a href="{{ path(prefix ~ 'edemy_main_document_details', {'slug': entity.slug}) }}">[leer más]</a>
             </div>
         </div>
     {% endfor %}
