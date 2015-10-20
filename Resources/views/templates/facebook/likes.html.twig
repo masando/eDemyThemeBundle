@@ -48,7 +48,27 @@
                 {{ page.likes }}
             </div>
             <div class="Cell">
+                {% if page.likes %}
+                    {{ (ref / page.likes) | number_format(2) }}
+                {% endif %}
+            </div>
+            <div class="Cell">
                 {{ page.likes - ref }}
+            </div>
+            <div class="Cell">
+                {% if page.likes %}
+                    {{ ((page.likes - ref)/page.likes) | number_format(2) }}
+                {% endif %}
+            </div>
+            <div class="Cell">
+                {% if page.likes %}
+                    {{ ((page.likes - ref)/ref) | number_format(2) }}
+                {% endif %}
+            </div>
+            <div class="Cell">
+                {% if page.likes %}
+                    {{ ((page.likes - ref)**2/(ref*page.likes)) | number_format(2) }}
+                {% endif %}
             </div>
         </div>
     {% endfor %}
