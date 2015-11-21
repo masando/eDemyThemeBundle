@@ -21,11 +21,13 @@
         {% for entity in pagination %}
             <div class="product">
                 <div class="product_imagen">
+				{% if entity.slug is not null %}
                     <a href="{{ path('edemy_product_product_details', { 'slug' : entity.slug }) }}">
                         {% if entity.imagenes|first.webpath is defined %}
                         <img src="{{ entity.imagenes|first.webpath(250, null, app.request.host) }}" />
                         {% endif %}
                     </a>
+				{% endif %}
                 </div>
                 <p><b>{{ entity.name }}</b><br/>
 
@@ -33,7 +35,9 @@
                     <meta itemprop="priceCurrency" content="EUR" />
                     {{  entity.price|number_format(2, '.') }}&nbsp;&euro;<br/>
                 {% endif %}
+				{% if entity.slug is not null %}
                 <a href="{{ path('edemy_product_product_details', { 'slug': entity.slug }) }}">Más Información</a></p>
+				{% endif %}
             </div>
         {% endfor %}
     </div>
